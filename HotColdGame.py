@@ -4,7 +4,34 @@
 
 import pygame
 import pygame.gfxdraw
+import random
 
+# game data that never changes
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+WHITE = (255, 255, 255)
+YELLOW = (255, 233, 0)
+
+SCREEN_SIZE = 800
+SCREEN = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE))
+
+# game data that can change values
+game = {
+    'circle_size': 50,          # 50 = level 1, 25 = level 2, 10 = level 3
+    'move_size': 50,            # 50 = level 1, 25 = level 2, 10 = level 3
+    'prev_x': 0,                # used to determine if getting hotter or colder
+    'prev_y': 0,                # used to determine if getting hotter or colder
+    'user_x': SCREEN_SIZE / 2,  # centered based on half of the screen size
+    'user_y': SCREEN_SIZE / 2,  # centered based on half of the screen size
+    'hidden_x': 0,              # randomly generated based on screen size
+    'hidden_y': 0,              # randomly generated based on screen size
+    'user_color': WHITE,        # right at the start of the game, but will change to red, blue or green
+    'hidden_color': BLACK,      # will make the hidden circle the same color as background
+    'num_moves': 0              # keep track of the current number of moves
+
+}
 
 def main():
 
