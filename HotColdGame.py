@@ -17,20 +17,23 @@ screen = pygame.display.set_mode(screen_size)
 # fps_limit = 60
 
 colorcircle = white
-posx = 300
-posy = 200
+hidden_color = black
+posx = 400
+posy = 400
 circle = pygame.draw.circle(screen, colorcircle, (posx, posy), 50)
-
+hidden_circle = pygame.draw.circle(screen, hidden_color, (200, 200), 50)
 
 def play_game():
 
-    global posx, posy
+    global posx, posy, hidden_color
 
     clock = pygame.time.Clock()
 
     # set_random_position()
 
     run_me = True
+
+
 
     while run_me:
         clock.tick(60)
@@ -50,12 +53,17 @@ def play_game():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_DOWN:
                     posy = posy + 10
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_d:
+                    hidden_color = green
+
         # fill the screen with black (otherwise, the circle will leave a trail)
         screen.fill(black)
         # redraw the circle
         pygame.draw.circle(screen, colorcircle, (posx, posy), 50)
-        pygame.display.flip()
 
+        pygame.draw.circle(screen, hidden_color, (200, 200), 50)
+        pygame.display.flip()
 
 
 def main():
