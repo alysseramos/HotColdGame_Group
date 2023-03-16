@@ -24,7 +24,6 @@ circle = pygame.draw.circle(screen, colorcircle, (posx, posy), 50)
 while run_me:
     clock.tick(fps_limit) 
 
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run_me = False
