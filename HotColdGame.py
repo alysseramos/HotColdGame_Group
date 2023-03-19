@@ -38,15 +38,13 @@ left_user_dist = user_pos + game['circle_size']
 
 while True:
 
-    x = random.randint (inside_dist, outside_dist)
-    y = random.randint (inside_dist, outside_dist)
+    posx = random.randint(inside_dist, outside_dist)
+    posy = random.randint(inside_dist, outside_dist)
 
-    if ( x < right_user_dist or x > left_user_dist) and ( y < right_user_dist or y > left_user_dist):
-        game['hidden_x'] = x
-        game['hidden_y'] = y
-
-
-
+    if (posx < right_user_dist or posx > left_user_dist) and (posy < right_user_dist or posy > left_user_dist):
+        game['hidden_x'] = posx
+        game['hidden_y'] = posy
+        return
 
 
 def play_game():
