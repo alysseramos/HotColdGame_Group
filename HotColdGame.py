@@ -30,11 +30,11 @@ def set_random_position():
 
 user_pos = SCREEN_SIZE / 2
 
-inside_dist = game['circle_size']
-outside_dist = SCREEN_SIZE - game['circle_size']
+inside_dist = hidden_circle['circle_size']
+outside_dist = SCREEN_SIZE - hidden_circle['circle_size']
 
-right_user_dist = user_pos - game['circle_size']
-left_user_dist = user_pos + game['circle_size']
+right_user_dist = user_pos - hidden_circle['circle_size']
+left_user_dist = user_pos + hidden_circle['circle_size']
 
 while True:
 
@@ -42,9 +42,9 @@ while True:
     posy = random.randint(inside_dist, outside_dist)
 
     if (posx < right_user_dist or posx > left_user_dist) and (posy < right_user_dist or posy > left_user_dist):
-        game['hidden_x'] = posx
-        game['hidden_y'] = posy
-        return
+        hidden_circle['hidden_x'] = posx
+        hidden_circle['hidden_y'] = posy
+
 
 
 def play_game():
