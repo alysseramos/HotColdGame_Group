@@ -9,8 +9,8 @@ blue = (0, 0, 255)
 white = (255, 255, 255)
 
 
-SCREEN_SIZE = screen_width, screen_height = 800, 800
-screen = pygame.display.set_mode(SCREEN_SIZE)
+screen_size = screen_width, screen_height = 800, 800
+screen = pygame.display.set_mode(screen_size)
 
 
 
@@ -28,10 +28,10 @@ def set_random_position():
 
     global game
 
-user_pos = SCREEN_SIZE / 2
+user_pos = screen_size // 2
 
 inside_dist = hidden_circle['circle_size']
-outside_dist = SCREEN_SIZE - hidden_circle['circle_size']
+outside_dist = screen_size - hidden_circle['circle_size']
 
 right_user_dist = user_pos - hidden_circle['circle_size']
 left_user_dist = user_pos + hidden_circle['circle_size']
@@ -56,7 +56,6 @@ def play_game():
     # set_random_position()
 
     run_me = True
-
 
 
     while run_me:
