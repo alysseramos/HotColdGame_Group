@@ -9,8 +9,8 @@ blue = (0, 0, 255)
 white = (255, 255, 255)
 
 
-screen_size = screen_width, screen_height = 800, 800
-screen = pygame.display.set_mode(screen_size)
+SCREEN_SIZE = screen_width, screen_height = 800, 800
+screen = pygame.display.set_mode(SCREEN_SIZE)
 
 
 
@@ -22,6 +22,32 @@ posx = 400
 posy = 400
 circle = pygame.draw.circle(screen, colorcircle, (posx, posy), 50)
 hidden_circle = pygame.draw.circle(screen, hidden_color, (200, 200), 50)
+
+
+def set_random_position():
+
+    global game
+
+user_pos = SCREEN_SIZE / 2
+
+inside_dist = game['circle_size']
+outside_dist = SCREEN_SIZE - game['circle_size']
+
+right_user_dist = user_pos - game['circle_size']
+left_user_dist = user_pos + game['circle_size']
+
+while True:
+
+    x = random.randint (inside_dist, outside_dist)
+    y = random.randint (inside_dist, outside_dist)
+
+    if ( x < right_user_dist or x > left_user_dist) and ( y < right_user_dist or y > left_user_dist):
+        game['hidden_x'] = x
+        game['hidden_y'] = y
+
+
+
+
 
 def play_game():
 
