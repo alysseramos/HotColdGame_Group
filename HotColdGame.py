@@ -23,6 +23,7 @@ circle = pygame.draw.circle(screen, colorcircle, (posx, posy), 50)
 hidden_circle = pygame.draw.circle(screen, hidden_color, (200, 200), 50)
 
 
+'''
 def set_random_position():
 
 global game
@@ -43,6 +44,8 @@ while True:
     if (posx < right_user_dist or posx > left_user_dist) and (posy < right_user_dist or posy > left_user_dist):
         hidden_circle['hidden_x'] = posx
         hidden_circle['hidden_y'] = posy
+        return
+'''
 
 
 def play_game():
