@@ -81,7 +81,9 @@ def play_game():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_d:
                     hidden_color = green
-
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_r:
+                    set_random_position()
         # fill the screen with black (otherwise, the circle will leave a trail)
         screen.fill(black)
         # redraw the circle
