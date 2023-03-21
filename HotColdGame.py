@@ -7,6 +7,7 @@ red = (255, 0, 0)
 green = (0, 255, 0)
 blue = (0, 0, 255)
 white = (255, 255, 255)
+YELLOW = (255, 255, 0)
 
 screen_size = screen_width, screen_height = 800, 800
 screen = pygame.display.set_mode(screen_size)
@@ -14,6 +15,8 @@ screen = pygame.display.set_mode(screen_size)
 # fps_limit = 60
 
 SCREEN_SIZE = 800
+SCREEN = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE))
+
 colorcircle = white
 hidden_color = black
 posx = 400
@@ -21,9 +24,16 @@ posy = 400
 circle_size = 50
 hidden_x = 200
 hidden_y = 200
+
+num_moves = 0
 # circle = pygame.draw.circle(screen, colorcircle, (posx, posy), 50)
 # pygame.draw.circle(screen, hidden_color, (hidden_x, hidden_y), circle_size)
 
+def display_text():
+    font = pygame.font.SysFont(None, 24)
+
+    line = font.render('#' + str(num_moves) + "moves", True, YELLOW)
+    SCREEN.blit(line, (100, 100))
 
 def set_random_position():
 
@@ -69,15 +79,19 @@ def play_game():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     posx = posx - 10
+                    num_moves + 1
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
                     posx = posx + 10
+                    num_moves + 1
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
                     posy = posy - 10
+                    num_moves + 1
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_DOWN:
                     posy = posy + 10
+                    num_moves + 1
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_d:
                     hidden_color = green
@@ -89,8 +103,13 @@ def play_game():
         # redraw the circle
         pygame.draw.circle(screen, colorcircle, (posx, posy), circle_size)
 
+
         pygame.draw.circle(screen, hidden_color, (hidden_x, hidden_y), circle_size)
+        display_text()
+
         pygame.display.flip()
+
+
 
 
 def main():
@@ -99,6 +118,7 @@ def main():
     pygame.display.set_caption('Hot Cold Game')
     set_random_position()
     play_game()
+
 
     pygame.quit()
 
