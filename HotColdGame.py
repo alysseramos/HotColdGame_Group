@@ -1,4 +1,5 @@
-import os, sys, math, pygame, pygame.mixer
+import pygame, pygame.mixer, sys, os
+import pygame_menu
 from pygame.locals import *
 import random
 
@@ -25,6 +26,8 @@ posy = 400
 circle_size = 50
 hidden_x = 200
 hidden_y = 200
+move_size = 0
+
 
 num_moves = 0
 # circle = pygame.draw.circle(screen, colorcircle, (posx, posy), 50)
@@ -32,6 +35,25 @@ num_moves = 0
 
 previous_x = 0
 previous_y = 0
+
+
+
+
+
+def set_difficulty(level, difficulty):
+
+    global circle_size, move_size
+
+    if difficulty == 3:
+        circle_size = 10
+        move_size = 10
+    elif difficulty == 2:
+        circle_size = 25
+        move_size = 25
+    else:
+        circle_size = 50
+        move_size = 50
+
 
 def set_circle_color():
 
@@ -101,19 +123,15 @@ def set_random_position():
             return
 
 
-
 def play_game():
-
-
 
     global posx, posy, hidden_color, hidden_x, hidden_y, num_moves
 
     clock = pygame.time.Clock()
 
-    # set_random_position()
+    set_random_position()
 
     run_me = True
-
 
     while run_me:
         clock.tick(60)
@@ -148,7 +166,6 @@ def play_game():
         # redraw the circle
         pygame.draw.circle(screen, colorcircle, (posx, posy), circle_size)
 
-
         pygame.draw.circle(screen, hidden_color, (hidden_x, hidden_y), circle_size)
         display_text()
 
@@ -156,16 +173,24 @@ def play_game():
         set_circle_color()
 
 
+def display_menu():
+
+    pygame.display.set_caption('Hot Cold Game')
+    menu = pygame_menu.Menu('Welcome', 400, 300, theme=pygame_menu.themes.THEME_BLUE)
+
+    menu.add.selector('Difficulty :', [('Easy', 1), ('Medium', 2), ('Hard', 3)], onchange=set_difficulty)
+    menu.add.button('Play', play_game)
+    menu.add.button('Quit', pygame_menu.events.EXIT)
+    menu.mainloop(SCREEN)
+    pygame.quit()
+
 
 def main():
 
     pygame.init()
-    pygame.display.set_caption('Hot Cold Game')
+
+    display_menu()
     set_random_position()
-    play_game()
-
-
-    pygame.quit()
 
 
 if __name__ == '__main__':
