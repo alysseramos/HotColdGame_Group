@@ -108,7 +108,6 @@ def set_random_position():
 
     inside_dist = circle_size
     outside_dist = SCREEN_SIZE - circle_size
-
     right_user_dist = user_pos - circle_size
     left_user_dist = user_pos + circle_size
 
