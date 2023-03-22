@@ -14,7 +14,6 @@ gray = (128, 128, 128)
 screen_size = screen_width, screen_height = 800, 800
 screen = pygame.display.set_mode(screen_size)
 
-
 SCREEN_SIZE = 800
 SCREEN = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE))
 
@@ -26,7 +25,6 @@ circle_size = 50
 hidden_x = 200
 hidden_y = 200
 move_size = 0
-
 
 num_moves = 0
 
@@ -53,8 +51,8 @@ def set_circle_color():
 
     global previous_x, previous_y, hidden_color, colorcircle, posy, posx, hidden_x, hidden_y
 
-    # set the amount the user's circle must overlap by the dimension of both circles added together minus 10
-    overlap = circle_size * 2 - 10
+    # set the amount the user's circle must overlap by the dimension of both circles added together minus 9
+    overlap = circle_size * 2 - 9
 
     # if the circle overlap then set both circles to different green colors
     if abs(posx - hidden_x) < overlap and abs(posy - hidden_y) < overlap:
@@ -77,34 +75,47 @@ def set_circle_color():
             else:
                 colorcircle = blue
 
+    if posx == 400:
+        if posy == 400:
+            colorcircle = white
+        return
+
+
     # store the current x, y to previous x, y to get ready for the new user's move
     previous_x = posx
     previous_y = posy
 
 
 def display_text():
+
     font = pygame.font.SysFont(None, 24)
 
-    line = font.render("Use arrows to move", True, YELLOW)
+    line = font.render("Find the hidden circle", True, YELLOW)
     SCREEN.blit(line, (50, 50))
 
-    line = font.render("Red = Warmer", True, YELLOW)
-    SCREEN.blit(line, (50, 80))
+    line = font.render("Use arrows to move", True, YELLOW)
+    SCREEN.blit(line, (50, 70))
 
-    line = font.render("Blue = Colder", True, YELLOW)
+    line = font.render("Red = Warmer", True, YELLOW)
     SCREEN.blit(line, (50, 100))
 
+    line = font.render("Blue = Colder", True, YELLOW)
+    SCREEN.blit(line, (50, 120))
+
+    line = font.render("White = Center", True, YELLOW)
+    SCREEN.blit(line, (50, 140))
+
     line = font.render('#' + str(num_moves) + " Moves", True, YELLOW)
-    SCREEN.blit(line, (50, 130))
-
-    line = font.render("D = Debug", True, YELLOW)
-    SCREEN.blit(line, (50, 150))
-
-    line = font.render("R = Restart", True, YELLOW)
     SCREEN.blit(line, (50, 170))
 
+    line = font.render("D = Debug", True, YELLOW)
+    SCREEN.blit(line, (700, 50))
+
+    line = font.render("R = Restart", True, YELLOW)
+    SCREEN.blit(line, (700, 70))
+
     line = font.render("H = Home", True, YELLOW)
-    SCREEN.blit(line, (50, 190))
+    SCREEN.blit(line, (700, 90))
 
 
 def set_random_position():
@@ -145,25 +156,39 @@ def play_game():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run_me = False
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     posx = posx - 10
                     num_moves = num_moves + 1
+                    if hidden_color == green:
+                        num_moves = num_moves - 1
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
                     posx = posx + 10
                     num_moves = num_moves + 1
+                    if hidden_color == green:
+                        num_moves = num_moves - 1
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
                     posy = posy - 10
                     num_moves = num_moves + 1
+                    if hidden_color == green:
+                        num_moves = num_moves - 1
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_DOWN:
                     posy = posy + 10
                     num_moves = num_moves + 1
+                    if hidden_color == green:
+                        num_moves = num_moves - 1
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_d:
                     hidden_color = gray
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
                     set_random_position()
@@ -171,6 +196,7 @@ def play_game():
                     posy = 400
                     hidden_color = black
                     num_moves = 0
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_h:
                     posx = 400
@@ -178,8 +204,10 @@ def play_game():
                     hidden_color = black
                     num_moves = 0
                     display_menu()
+
         # fill the screen with black (otherwise, the circle will leave a trail)
         screen.fill(black)
+
         # redraw the circle
         pygame.draw.circle(screen, colorcircle, (posx, posy), circle_size)
 
@@ -206,6 +234,7 @@ def display_menu():
 def main():
 
     pygame.init()
+
     pygame.mixer.init()
     pygame.mixer.music.load('Fluffing-a-Duck.mp3')
     pygame.mixer.music.set_volume(0.5)
