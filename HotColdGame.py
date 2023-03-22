@@ -24,7 +24,7 @@ posy = 400
 circle_size = 50
 hidden_x = 200
 hidden_y = 200
-move_size = 0
+move_size = 50
 
 num_moves = 0
 
@@ -39,10 +39,12 @@ def set_difficulty(level, difficulty):
     if difficulty == 3:
         circle_size = 10
         move_size = 10
+
     elif difficulty == 2:
         circle_size = 25
         move_size = 25
-    else:
+
+    elif difficulty == 1:
         circle_size = 50
         move_size = 50
 
@@ -74,6 +76,10 @@ def set_circle_color():
                 colorcircle = red
             else:
                 colorcircle = blue
+
+        # store the current x, y to previous x, y to get ready for the new user's move
+        previous_x = posx
+        previous_y = posy
 
     if posx == 400:
         if posy == 400:
@@ -162,31 +168,31 @@ def play_game():
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    posx = posx - 10
-                    num_moves = num_moves + 1
-                    if hidden_color == green:
-                        num_moves = num_moves - 1
+                    if posx > circle_size:
+                        posx = posx - move_size
+                        if hidden_color != green:
+                            num_moves = num_moves + 1
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
-                    posx = posx + 10
-                    num_moves = num_moves + 1
-                    if hidden_color == green:
-                        num_moves = num_moves - 1
+                    if posx < 800 - circle_size:
+                        posx = posx + move_size
+                        if hidden_color != green:
+                            num_moves = num_moves + 1
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
-                    posy = posy - 10
-                    num_moves = num_moves + 1
-                    if hidden_color == green:
-                        num_moves = num_moves - 1
+                    if posy > circle_size:
+                        posy = posy - move_size
+                        if hidden_color != green:
+                            num_moves = num_moves + 1
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_DOWN:
-                    posy = posy + 10
-                    num_moves = num_moves + 1
-                    if hidden_color == green:
-                        num_moves = num_moves - 1
+                    if posy < 800 - circle_size:
+                        posy = posy + move_size
+                        if hidden_color != green:
+                            num_moves = num_moves + 1
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_d:
@@ -230,7 +236,6 @@ def display_menu():
 
     pygame.display.set_caption('Hot Cold Game')
     menu = pygame_menu.Menu('Hot/Cold Game', 400, 300, theme=pygame_menu.themes.THEME_BLUE)
-
     menu.add.selector('Difficulty : ', [(' Easy ', 1), ('Medium', 2), (' Hard ', 3)], onchange=set_difficulty)
     menu.add.button('Play', play_game)
     menu.add.button('Quit', pygame_menu.events.EXIT)
