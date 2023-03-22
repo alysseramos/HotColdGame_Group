@@ -334,21 +334,34 @@ def how_to_play_menu(menu):
     menu.clear()
     # This displays the instructions
     menu.add.label(instructions)
-    # This is a button back to the orginal display menu
+    # This is a button back to the original display menu
     menu.add.button('Back', display_menu)
 
 
 def play_music():
+    """
+    This function plays the music. It continues to loop over and over until the game is terminated
+    """
+    # This allows there to be music
     pygame.mixer.init()
+    # This is the music file
     pygame.mixer.music.load('Fluffing-a-Duck.mp3')
+    # This is the music volume
     pygame.mixer.music.set_volume(0.5)
+    # This keeps the music looping over and over
     pygame.mixer.music.play(loops=-1)
 
 
 def main():
+    """
+    This is the main. This plays the music that the user gets to hear. It will also display the menu.
+    """
+    # This creates the pygame window
     pygame.init()
 
+    # This runs the play_music function
     play_music()
+    # This runs the display_menu function
     display_menu()
 
 
