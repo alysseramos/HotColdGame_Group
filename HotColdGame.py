@@ -203,123 +203,195 @@ def set_random_position():
 
 
 def play_game():
+    """
+    This function actually runs the game. This function allows the user to move their circle up, down, left and right.
+    It counts the total number of moves, allows the user to Debug, go back to the home page or restart the game.
+    """
+    # Brings in these variables. All are subject to change
     global posx, posy, hidden_color, hidden_x, hidden_y, num_moves
 
     clock = pygame.time.Clock()
 
+    # This sets the random position of the hidden circle
     set_random_position()
 
     run_me = True
 
     while run_me:
+        # Limits the game to be played at 60FPS
         clock.tick(60)
 
         for event in pygame.event.get():
+            # Allow the user to x out of the program
             if event.type == pygame.QUIT:
                 run_me = False
 
+            # Left arrow key
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
+                    # This if statement makes sure the circle does not travel off the screen
                     if posx > circle_size:
+                        # Move the circle by the level of difficulty the user has chosen (either by 50, 25 or 10)
                         posx = posx - move_size
+                        # If the user has not found the hidden circle, add one to the total number of moves
                         if hidden_color != green:
                             num_moves = num_moves + 1
 
+            # Right arrow key
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
+                    # This if statement makes sure the circle does not travel off the screen
                     if posx < 800 - circle_size:
+                        # Move the circle by the level of difficulty the user has chosen (either by 50, 25 or 10)
                         posx = posx + move_size
+                        # If the user has not found the hidden circle, add one to the total number of moves
                         if hidden_color != green:
                             num_moves = num_moves + 1
 
+            # Up arrow key
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
+                    # This if statement makes sure the circle does not travel off the screen
                     if posy > circle_size:
+                        # Move the circle by the level of difficulty the user has chosen (either by 50, 25 or 10)
                         posy = posy - move_size
+                        # If the user has not found the hidden circle, add one to the total number of moves
                         if hidden_color != green:
                             num_moves = num_moves + 1
 
+            # Down arrow key
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_DOWN:
+                    # This if statement makes sure the circle does not travel off the screen
                     if posy < 800 - circle_size:
+                        # Move the circle by the level of difficulty the user has chosen (either by 50, 25 or 10)
                         posy = posy + move_size
+                        # If the user has not found the hidden circle, add one to the total number of moves
                         if hidden_color != green:
                             num_moves = num_moves + 1
 
+            # Debug (D) key
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_d:
+                    # If user has already found the hidden circle, keep hidden circle color to green
                     if hidden_color == green:
                         hidden_color = green
                     else:
                         hidden_color = gray
 
+            # Restart (R) key
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
+                    # Set a new random position
                     set_random_position()
+                    # Move user circle back to the center
                     posx = 400
                     posy = 400
+                    # Insure the hidden circle color is hidden to the user
                     hidden_color = black
+                    # Reset the number of moves
                     num_moves = 0
 
+            # Home (H) key
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_h:
+                    # Move user circle back to the center
                     posx = 400
                     posy = 400
+                    # Insure the hidden circle color is hidden to the user
                     hidden_color = black
+                    # Reset the number of moves
                     num_moves = 0
+                    # Run display menu, gives the user a chance to change difficulty/see how to play/quit
                     display_menu()
 
-        # fill the screen with black (otherwise, the circle will leave a trail)
+        # Fills the screen with black (otherwise, the circle will leave a trail)
         screen.fill(black)
 
-        # redraw the circle
+        # Draws both circles
         pygame.draw.circle(screen, colorcircle, (posx, posy), circle_size)
-
         pygame.draw.circle(screen, hidden_color, (hidden_x, hidden_y), circle_size)
+
         display_text()
 
+        # This displays the pygame window
         pygame.display.flip()
+
         set_circle_color()
 
+    # Without this, user can not x out of program completely
     pygame.display.quit()
 
 
 def display_menu():
+    """
+    This function displays the menu at the beginning of the game. This menu gives the user a chance to change the
+    difficulty from easy, medium or hard. It also lets the user click play from the menu. It
+    also lets the user learn how to play the game as well. Finally, it lets the user quit from the menu.
+    """
+    # This is the caption of the window
     pygame.display.set_caption('Hot Cold Game')
+    # This is the image icon for the window
     img = pygame.image.load('HotColdIconImage.png')
     pygame.display.set_icon(img)
 
+    # This is the menu title, size and the theme
     menu = pygame_menu.Menu('Hot Cold Game', 600, 500, theme=pygame_menu.themes.THEME_BLUE)
+    # This allows the user to change the difficulty, it is defaulted to easy
     menu.add.selector('Difficulty : ', [(' Easy ', 1), ('Medium', 2), (' Hard ', 3)], onreturn=set_difficulty('', 1),
                       onchange=set_difficulty)
+    # This button lets the user play the back
     menu.add.button('Play', play_game)
+    # This button goes to how to play menu
     menu.add.button('How To Play', lambda: how_to_play_menu(menu))
+    # This button quits the game
     menu.add.button('Quit', pygame_menu.events.EXIT)
     menu.mainloop(SCREEN)
 
 
 def how_to_play_menu(menu):
+    """
+    This function is like a next page to the display menu. It tells the user the object, how to move, and what the
+    colors mean. The user can go back to the original menu by pressing the back button
+    :param menu: This passes in the menu from the display_menu function
+    """
     instructions = "Objective: Find the hidden circle\n" \
                    "Use the arrow keys to move\n" \
                    "Red circle = Closer to hidden circle\n" \
                    "Blue circle = Further from hidden circle\n" \
                    "White circle = Center of the screen\n"
+    # This clears the other menu
     menu.clear()
+    # This displays the instructions
     menu.add.label(instructions)
+    # This is a button back to the original display menu
     menu.add.button('Back', display_menu)
 
 
 def play_music():
+    """
+    This function plays the music. It continues to loop over and over until the game is terminated
+    """
+    # This allows there to be music
     pygame.mixer.init()
+    # This is the music file
     pygame.mixer.music.load('Fluffing-a-Duck.mp3')
+    # This is the music volume
     pygame.mixer.music.set_volume(0.5)
+    # This keeps the music looping over and over
     pygame.mixer.music.play(loops=-1)
 
 
 def main():
+    """
+    This is the main. This plays the music that the user gets to hear. It will also display the menu.
+    """
+    # This creates the pygame window
     pygame.init()
 
+    # This runs the play_music function
     play_music()
+    # This runs the display_menu function
     display_menu()
 
 
