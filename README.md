@@ -1,6 +1,5 @@
-<h1><b> HotColdGame_Group</h1></b>
 
-<u>The Hot/Cold Game</u><br>
+<h1><b>The Hot/Cold Game</h1></b>
 
 ** In order to view program install PyGame to your program **
 
