@@ -4,7 +4,7 @@ The Hot/Cold Game
 
 The user plays the game in order to find the hidden circle. The circle is randomly hidden within the screen.
 
-The user will use the color red, blue and white to help them reveal where the hidden circle is.
+The user will use the colors red, blue and white to help them reveal where the hidden circle is.
 RED:Warm
 BLUE:Cold
 WHITE:Center of the Screen
@@ -12,13 +12,14 @@ WHITE:Center of the Screen
 The user is able to select a level of difficulty either :easy, middle, or hard. Based on the selected
 level will determine the size of the circle. When the easy level is selected the circle is larger, compared to the
 hard level, where the circle is much smaller. Users will also be able to view instruction on how to play in the
-application as well.
+at the home of application as well.
 
 The program also will track the number of moves it took the user to find the hidden circle.
-It will restart the move tracking, everytime the user restarts, or goes to the home.
+It will restart the move tracking, everytime the user restarts, or goes to the home screen.
 
 To play the game you will use the following keys :
 Up,Down,Right,Left
+
 D: Debug : This will reveal where the circle is hidden.
 R: Restart: This will take the user back to the center of the screen and restart tracking moves in that level
 H: Home : This will take users back to the home screen where they can change the level, view rules, or quit
