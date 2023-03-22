@@ -33,7 +33,6 @@ previous_y = 0
 
 
 def set_difficulty(level, difficulty):
-
     global circle_size, move_size
 
     if difficulty == 3:
@@ -50,7 +49,6 @@ def set_difficulty(level, difficulty):
 
 
 def set_circle_color():
-
     global previous_x, previous_y, hidden_color, colorcircle, posy, posx, hidden_x, hidden_y
 
     # set the amount the user's circle must overlap by the dimension of both circles added together minus 9
@@ -92,7 +90,6 @@ def set_circle_color():
 
 
 def display_text():
-
     font = pygame.font.SysFont(None, 24)
 
     line = font.render("Find the hidden circle", True, YELLOW)
@@ -128,7 +125,6 @@ def display_text():
 
 
 def set_random_position():
-
     global circle_size, hidden_x, hidden_y
 
     user_pos = SCREEN_SIZE // 2
@@ -150,7 +146,6 @@ def set_random_position():
 
 
 def play_game():
-
     global posx, posy, hidden_color, hidden_x, hidden_y, num_moves
 
     clock = pygame.time.Clock()
@@ -233,17 +228,16 @@ def play_game():
 
 
 def display_menu():
-
     pygame.display.set_caption('Hot Cold Game')
     menu = pygame_menu.Menu('Hot/Cold Game', 400, 300, theme=pygame_menu.themes.THEME_BLUE)
-    menu.add.selector('Difficulty : ', [(' Easy ', 1), ('Medium', 2), (' Hard ', 3)], onchange=set_difficulty)
+    menu.add.selector('Difficulty : ', [(' Easy ', 1), ('Medium', 2), (' Hard ', 3)], onreturn=set_difficulty('', 1),
+                      onchange=set_difficulty)
     menu.add.button('Play', play_game)
     menu.add.button('Quit', pygame_menu.events.EXIT)
     menu.mainloop(SCREEN)
 
 
 def main():
-
     pygame.init()
 
     pygame.mixer.init()
