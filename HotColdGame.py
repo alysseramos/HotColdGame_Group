@@ -187,7 +187,7 @@ def main():
 
     pygame.init()
     pygame.mixer.init()
-    pygame.mixer.music.laod('Fluffing-a-Duck.mp3')
+    pygame.mixer.music.load('Fluffing-a-Duck.mp3')
     pygame.mixer.music.set_volume(0.5)
     pygame.mixer.music.play(loops=-1)
 
