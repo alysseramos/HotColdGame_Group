@@ -128,23 +128,8 @@ def set_circle_color():
 def display_text():
     font = pygame.font.SysFont(None, 24)
 
-    line = font.render("Find the hidden circle", True, yellow)
-    SCREEN.blit(line, (50, 50))
-
-    line = font.render("Use arrows to move", True, yellow)
-    SCREEN.blit(line, (50, 70))
-
-    line = font.render("Red = Warmer", True, yellow)
-    SCREEN.blit(line, (50, 100))
-
-    line = font.render("Blue = Colder", True, yellow)
-    SCREEN.blit(line, (50, 120))
-
-    line = font.render("White = Center", True, yellow)
-    SCREEN.blit(line, (50, 140))
-
     line = font.render('#' + str(num_moves) + " Moves", True, yellow)
-    SCREEN.blit(line, (50, 170))
+    SCREEN.blit(line, (50, 50))
 
     line = font.render("D = Debug", True, yellow)
     SCREEN.blit(line, (700, 50))
@@ -268,12 +253,24 @@ def display_menu():
     img = pygame.image.load('HotColdIconImage.png')
     pygame.display.set_icon(img)
 
-    menu = pygame_menu.Menu('Hot/Cold Game', 400, 300, theme=pygame_menu.themes.THEME_BLUE)
+    menu = pygame_menu.Menu('Hot Cold Game', 600, 500, theme=pygame_menu.themes.THEME_BLUE)
     menu.add.selector('Difficulty : ', [(' Easy ', 1), ('Medium', 2), (' Hard ', 3)], onreturn=set_difficulty('', 1),
                       onchange=set_difficulty)
     menu.add.button('Play', play_game)
+    menu.add.button('How To Play', lambda: how_to_play_menu(menu))
     menu.add.button('Quit', pygame_menu.events.EXIT)
     menu.mainloop(SCREEN)
+
+
+def how_to_play_menu(menu):
+    instructions = "Objective: Find the hidden circle\n" \
+                   "Use the arrow keys to move\n" \
+                   "Red circle = Closer to hidden circle\n" \
+                   "Blue circle = Further from hidden circle\n" \
+                   "White circle = Center of the screen\n"
+    menu.clear()
+    menu.add.label(instructions)
+    menu.add.button('Back', display_menu)
 
 
 def play_music():
