@@ -53,19 +53,28 @@ previous_y = 0
 
 
 def set_difficulty(level, difficulty):
-    global circle_size, move_size
+    """
+    This function is ran once the user has selected what difficulty he/she would like to play the game at. The user gets
+    three options. Easy, Medium, or Hard. The difficulty changes the circle size and how far the circle moves.
+    :param level: This stores the name of each difficulty. Easy, Medium, Hard
+    :param difficulty: This is the difficulty level. Easy, Medium, and Hard are equaled to 1,2,3.
+    """
+    global circle_size, move_size   # Bring in the circle_size and the move_size, so it has the ability to change
 
-    if difficulty == 3:
-        circle_size = 10
-        move_size = 10
+    # This is Easy mode.
+    if difficulty == 1:
+        circle_size = 50
+        move_size = 50
 
+    # This is Medium mode
     elif difficulty == 2:
         circle_size = 25
         move_size = 25
 
-    elif difficulty == 1:
-        circle_size = 50
-        move_size = 50
+    # This is Hard mode
+    elif difficulty == 3:
+        circle_size = 10
+        move_size = 10
 
 
 def set_circle_color():
