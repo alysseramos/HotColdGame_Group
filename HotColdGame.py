@@ -156,23 +156,29 @@ def set_circle_color():
 
 
 def display_text():
-    font = pygame.font.SysFont(None, 24)
+    """
+    This function displays the in game text on the screen. It reminds the users how to debug the program, how to
+    restart, and also how to go back to the home. It also tells the user how many moves they have done. Lastly, this
+    function promotes a message once the user finds the hidden circle.
+    """
+    font = pygame.font.SysFont(None, 24)  # This is the font type and font size.
 
     line = font.render('#' + str(num_moves) + " Moves", True, yellow)
-    SCREEN.blit(line, (50, 50))
+    SCREEN.blit(line, (50, 50))  # The location on the screen
 
     line = font.render("D = Debug", True, yellow)
-    SCREEN.blit(line, (700, 50))
+    SCREEN.blit(line, (700, 50))  # The location on the screen
 
     line = font.render("R = Restart", True, yellow)
-    SCREEN.blit(line, (700, 70))
+    SCREEN.blit(line, (700, 70))  # The location on the screen
 
     line = font.render("H = Home", True, yellow)
-    SCREEN.blit(line, (700, 90))
+    SCREEN.blit(line, (700, 90))  # The location on the screen
 
+    # When the user finds the hidden circle, it displays one last message
     if hidden_color == green:
         line = font.render('You found the circle in #' + str(num_moves) + " moves!", True, yellow)
-        SCREEN.blit(line, (265, 400))
+        SCREEN.blit(line, (265, 400))  # The location on the screen
 
 
 def set_random_position():
