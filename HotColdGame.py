@@ -5,9 +5,9 @@ The Hot/Cold Game
 The user plays the game in order to find the hidden circle. The circle is randomly hidden within the screen.
 
 The user will use the color red, blue and white to help them reveal where the hidden circle is.
-RED: Warm
+RED:Warm
 BLUE:Cold
-WHITE: Center of the Screen
+WHITE:Center of the Screen
 
 The user is able to select a level of difficulty either :easy, middle, or hard. Based on the selected
 level will determine the size of the circle. When the easy level is selected the circle is larger, compared to the
