@@ -265,7 +265,7 @@ def play_game():
 
 def display_menu():
     pygame.display.set_caption('Hot Cold Game')
-    img = pygame.image.load('Hot_Cold_Image.jpg')
+    img = pygame.image.load('HotColdIconImage.png')
     pygame.display.set_icon(img)
 
     menu = pygame_menu.Menu('Hot/Cold Game', 400, 300, theme=pygame_menu.themes.THEME_BLUE)
