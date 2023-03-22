@@ -1,6 +1,6 @@
 <h1><b> HotColdGame_Group</h1></b>
 
-The Hot/Cold Game<br>
+<ul>The Hot/Cold Game</ul><br>
 
 The user plays the game in order to find the hidden circle. The circle is randomly hidden within the screen.<br>
 
@@ -14,11 +14,12 @@ The program also will track the number of moves it took the user to find the hid
 It will restart the move tracking, everytime the user restarts, or goes to the home.<br>
 
 The user will use the color red, blue and white to help them reveal where the hidden circle is.<br>
+
 RED:Warm<br>
 BLUE:Cold<br>
 WHITE:Center of the Screen<br>
 
-To play the game you will use the following keys :<br>
+<ul><b>To play the game you will use the following keys :</ul></b><br>
 Up,Down,Right,Left<br>
 
 <b>D: Debug :</b> This will reveal where the circle is hidden.<br>
