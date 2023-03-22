@@ -294,15 +294,27 @@ def play_game():
 
 
 def display_menu():
+    """
+    This function displays the menu at the beginning of the game. This menu gives the user a chance to change the
+    difficulty from easy, medium or hard. It also lets the user click play from the menu. It
+    also lets the user learn how to play the game as well. Finally, it lets the user quit from the menu.
+    """
+    # This is the caption of the window
     pygame.display.set_caption('Hot Cold Game')
+    # This is the image icon for the window
     img = pygame.image.load('HotColdIconImage.png')
     pygame.display.set_icon(img)
 
+    # This is the menu title, size and the theme
     menu = pygame_menu.Menu('Hot Cold Game', 600, 500, theme=pygame_menu.themes.THEME_BLUE)
+    # This allows the user to change the difficulty, it is defaulted to easy
     menu.add.selector('Difficulty : ', [(' Easy ', 1), ('Medium', 2), (' Hard ', 3)], onreturn=set_difficulty('', 1),
                       onchange=set_difficulty)
+    # This button lets the user play the back
     menu.add.button('Play', play_game)
+    # This button goes to how to play menu
     menu.add.button('How To Play', lambda: how_to_play_menu(menu))
+    # This button quits the game
     menu.add.button('Quit', pygame_menu.events.EXIT)
     menu.mainloop(SCREEN)
 
