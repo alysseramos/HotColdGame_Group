@@ -2,7 +2,7 @@
 
 <u>The Hot/Cold Game</u><br>
 
-* In order to view program install PyGame to your program *
+** In order to view program install PyGame to your program **
 
 The user plays the game in order to find the hidden circle. The circle is randomly hidden within the screen.<br>
 
