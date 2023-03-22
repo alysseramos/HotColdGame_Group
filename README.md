@@ -1,6 +1,6 @@
 <h1><b> HotColdGame_Group</h1></b>
 
-<ul>The Hot/Cold Game</ul><br>
+<u>The Hot/Cold Game</u><br>
 
 The user plays the game in order to find the hidden circle. The circle is randomly hidden within the screen.<br>
 
