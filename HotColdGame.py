@@ -78,6 +78,12 @@ def set_difficulty(level, difficulty):
 
 
 def set_circle_color():
+    """
+    This function changes the hidden circle and user circle colors. If the user circle is getting further away from the
+    hidden circle, it changes the user circle to blue. If the user circle is getting closer to the hidden circle it
+    changes the user circle to red. If the user circle is on top/overlapping the hidden circle, it changes the hidden
+    circle and the user circle to green.
+    """
     global previous_x, previous_y, hidden_color, colorcircle, posy, posx, hidden_x, hidden_y
 
     # set the amount the user's circle must overlap by the dimension of both circles added together minus 9
@@ -108,6 +114,7 @@ def set_circle_color():
         previous_x = posx
         previous_y = posy
 
+    # This if statement changes the users color to white when the user is at the center
     if posx == 400:
         if posy == 400:
             colorcircle = white
