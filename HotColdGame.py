@@ -14,6 +14,7 @@ level will determine the size of the circle. When the easy level is selected the
 hard level, where the circle is much smaller. Users will also be able to view instruction on how to play in the
 at the home of application as well.
 
+
 The program also will track the number of moves it took the user to find the hidden circle.
 It will restart the move tracking, everytime the user restarts, or goes to the home screen.
 
