@@ -12,9 +12,9 @@ hard level, where the circle is much smaller. Users will also be able to view in
 application as well.<br>
 
 The program also will track the number of moves it took the user to find the hidden circle.<br>
-It will restart the move tracking, everytime the user restarts, or goes to the home.<br>
+It will restart the move tracking, everytime the user restarts, or goes to the home screen.<br>
 
-The user will use the color red, blue and white to help them reveal where the hidden circle is.<br>
+The user will use the colors red, blue and white to help them reveal where the hidden circle is.<br>
 
 RED:Warm<br>
 BLUE:Cold<br>
