@@ -273,16 +273,18 @@ def display_menu():
     menu.mainloop(SCREEN)
 
 
-def main():
-    pygame.init()
-
+def play_music():
     pygame.mixer.init()
     pygame.mixer.music.load('Fluffing-a-Duck.mp3')
     pygame.mixer.music.set_volume(0.5)
     pygame.mixer.music.play(loops=-1)
 
+
+def main():
+    pygame.init()
+
+    play_music()
     display_menu()
-    set_random_position()
 
 
 if __name__ == '__main__':
