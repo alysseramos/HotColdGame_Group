@@ -88,17 +88,23 @@ def display_text():
     line = font.render("Use arrows to move", True, YELLOW)
     SCREEN.blit(line, (50, 50))
 
-    line = font.render('#' + str(num_moves) + " Moves", True, YELLOW)
+    line = font.render("Red = Warmer", True, YELLOW)
     SCREEN.blit(line, (50, 80))
 
-    line = font.render("D = Debug", True, YELLOW)
-    SCREEN.blit(line, (50, 110))
+    line = font.render("Blue = Colder", True, YELLOW)
+    SCREEN.blit(line, (50, 100))
 
-    line = font.render("R = Restart", True, YELLOW)
+    line = font.render('#' + str(num_moves) + " Moves", True, YELLOW)
     SCREEN.blit(line, (50, 130))
 
-    line = font.render("H = Home", True, YELLOW)
+    line = font.render("D = Debug", True, YELLOW)
     SCREEN.blit(line, (50, 150))
+
+    line = font.render("R = Restart", True, YELLOW)
+    SCREEN.blit(line, (50, 170))
+
+    line = font.render("H = Home", True, YELLOW)
+    SCREEN.blit(line, (50, 190))
 
 
 def set_random_position():
@@ -189,7 +195,7 @@ def play_game():
 def display_menu():
 
     pygame.display.set_caption('Hot Cold Game')
-    menu = pygame_menu.Menu('Welcome', 400, 300, theme=pygame_menu.themes.THEME_BLUE)
+    menu = pygame_menu.Menu('Hot/Cold Game', 400, 300, theme=pygame_menu.themes.THEME_BLUE)
 
     menu.add.selector('Difficulty :', [('Easy', 1), ('Medium', 2), ('Hard', 3)], onchange=set_difficulty)
     menu.add.button('Play', play_game)
