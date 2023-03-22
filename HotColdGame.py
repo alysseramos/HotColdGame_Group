@@ -85,14 +85,21 @@ def set_circle_color():
 def display_text():
     font = pygame.font.SysFont(None, 24)
 
-    line = font.render('#' + str(num_moves) + " Moves", True, YELLOW)
+    line = font.render("Use arrows to move", True, YELLOW)
     SCREEN.blit(line, (50, 50))
 
-    line = font.render("D = Debug", True, YELLOW)
+    line = font.render('#' + str(num_moves) + " Moves", True, YELLOW)
     SCREEN.blit(line, (50, 80))
 
-    line = font.render("R = Restart", True, YELLOW)
+    line = font.render("D = Debug", True, YELLOW)
     SCREEN.blit(line, (50, 110))
+
+    line = font.render("R = Restart", True, YELLOW)
+    SCREEN.blit(line, (50, 130))
+
+    line = font.render("H = Home", True, YELLOW)
+    SCREEN.blit(line, (50, 150))
+
 
 def set_random_position():
 
@@ -158,6 +165,13 @@ def play_game():
                     posy = 400
                     hidden_color = black
                     num_moves = 0
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_h:
+                    posx = 400
+                    posy = 400
+                    hidden_color = black
+                    num_moves = 0
+                    display_menu()
         # fill the screen with black (otherwise, the circle will leave a trail)
         screen.fill(black)
         # redraw the circle
