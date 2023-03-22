@@ -80,7 +80,6 @@ def set_circle_color():
             colorcircle = white
         return
 
-
     # store the current x, y to previous x, y to get ready for the new user's move
     previous_x = posx
     previous_y = posy
@@ -116,6 +115,10 @@ def display_text():
 
     line = font.render("H = Home", True, YELLOW)
     SCREEN.blit(line, (700, 90))
+
+    if hidden_color == green:
+        line = font.render('You found the circle in #' + str(num_moves) + " moves!", True, YELLOW)
+        SCREEN.blit(line, (265, 400))
 
 
 def set_random_position():
@@ -187,7 +190,10 @@ def play_game():
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_d:
-                    hidden_color = gray
+                    if hidden_color == green:
+                        hidden_color = green
+                    else:
+                        hidden_color = gray
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
@@ -225,7 +231,7 @@ def display_menu():
     pygame.display.set_caption('Hot Cold Game')
     menu = pygame_menu.Menu('Hot/Cold Game', 400, 300, theme=pygame_menu.themes.THEME_BLUE)
 
-    menu.add.selector('Difficulty :', [('Easy', 1), ('Medium', 2), ('Hard', 3)], onchange=set_difficulty)
+    menu.add.selector('Difficulty : ', [(' Easy ', 1), ('Medium', 2), (' Hard ', 3)], onchange=set_difficulty)
     menu.add.button('Play', play_game)
     menu.add.button('Quit', pygame_menu.events.EXIT)
     menu.mainloop(SCREEN)
