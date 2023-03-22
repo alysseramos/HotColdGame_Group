@@ -1,6 +1,5 @@
-import pygame, pygame.mixer, sys, os
+import pygame, pygame.mixer, sys
 import pygame_menu
-from pygame.locals import *
 import random
 
 black = (0, 0, 0)
@@ -14,7 +13,6 @@ gray = (128, 128, 128)
 screen_size = screen_width, screen_height = 800, 800
 screen = pygame.display.set_mode(screen_size)
 
-# fps_limit = 60
 
 SCREEN_SIZE = 800
 SCREEN = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE))
@@ -30,14 +28,9 @@ move_size = 0
 
 
 num_moves = 0
-# circle = pygame.draw.circle(screen, colorcircle, (posx, posy), 50)
-# pygame.draw.circle(screen, hidden_color, (hidden_x, hidden_y), circle_size)
 
 previous_x = 0
 previous_y = 0
-
-
-
 
 
 def set_difficulty(level, difficulty):
@@ -91,13 +84,13 @@ def set_circle_color():
 def display_text():
     font = pygame.font.SysFont(None, 24)
 
-    line = font.render('#' + str(num_moves) + "moves", True, YELLOW)
+    line = font.render('#' + str(num_moves) + " Moves", True, YELLOW)
     SCREEN.blit(line, (50, 50))
 
-    line = font.render("d = debug", True, YELLOW)
+    line = font.render("D = Debug", True, YELLOW)
     SCREEN.blit(line, (50, 80))
 
-    line = font.render("r = restart", True, YELLOW)
+    line = font.render("R = Restart", True, YELLOW)
     SCREEN.blit(line, (50, 110))
 
 def set_random_position():
@@ -160,6 +153,10 @@ def play_game():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
                     set_random_position()
+                    posx = 400
+                    posy = 400
+                    hidden_color = black
+                    num_moves = 0
         # fill the screen with black (otherwise, the circle will leave a trail)
         screen.fill(black)
         # redraw the circle
@@ -171,6 +168,8 @@ def play_game():
         pygame.display.flip()
         set_circle_color()
 
+    pygame.display.quit()
+
 
 def display_menu():
 
@@ -181,7 +180,6 @@ def display_menu():
     menu.add.button('Play', play_game)
     menu.add.button('Quit', pygame_menu.events.EXIT)
     menu.mainloop(SCREEN)
-    pygame.quit()
 
 
 def main():
