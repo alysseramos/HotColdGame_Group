@@ -2,6 +2,8 @@
 
 <u>The Hot/Cold Game</u><br>
 
+* In order to view program install PyGame to your program *
+
 The user plays the game in order to find the hidden circle. The circle is randomly hidden within the screen.<br>
 
 
@@ -25,4 +27,6 @@ Up,Down,Right,Left<br>
 <b>D: Debug :</b> This will reveal where the circle is hidden.<br>
   <b>R: Restart: </b>This will take the user back to the center of the screen and restart tracking moves in that level<br>
   <b>H: Home :</b> This will take users back to the home screen where they can change the level, view rules, or quit<br>
-
+  
+ 
+Authors : Jackson Tuttle, Rohan Oelofse, Alysse Ramos
