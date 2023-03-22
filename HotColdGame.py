@@ -1,33 +1,53 @@
-import pygame
-import pygame.mixer
-import pygame_menu
-import random
+import pygame           # Importing pygame allows us to have all the available modules into the pygame package
+import pygame.mixer     # Importing pygame.mixer loads the audio file into the program
+import pygame_menu      # Importing pygame.menu is for creating menus and GUIs
+import random           # Importing random allows the program to generate a random number/location
 
+# Colors
 black = (0, 0, 0)
 red = (255, 0, 0)
 green = (0, 153, 0)
 blue = (0, 0, 255)
 white = (255, 255, 255)
-YELLOW = (255, 255, 0)
+yellow = (255, 255, 0)
 gray = (128, 128, 128)
 
+colorcircle = white  # This is the user color at the beginning of the game
+hidden_color = black  # This is hidden color of the hidden circle. It is black to blend into the background
+
+# Set the screen size using a tuple of screen_width and screen_height.
+# In this case, the screen size is set to 800 pixels by 800 pixels.
 screen_size = screen_width, screen_height = 800, 800
+
+# Create a Pygame display window using the screen size tuple.
+# The set_mode() method returns a Pygame Surface object that can be used to draw on the display.
 screen = pygame.display.set_mode(screen_size)
 
+# Define a constant SCREEN_SIZE to hold the value 800.
 SCREEN_SIZE = 800
+
+# Create another Pygame display window using a tuple with the constant SCREEN_SIZE twice.
+# The set_mode() method returns a Pygame Surface object that can be used to draw on the display.
 SCREEN = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE))
 
-colorcircle = white
-hidden_color = black
+# At the beginning of the game, it is placing the users circle in the middle of the screen
 posx = 400
 posy = 400
-circle_size = 50
-hidden_x = 200
-hidden_y = 200
-move_size = 50
 
-num_moves = 0
+# Storing values to equal zero. These values are the hidden circles x and y coordinates.
+# These values change once set_random_position is ran
+hidden_x = 0
+hidden_y = 0
 
+circle_size = 0  # The size of the circle, this value changes once the set_difficulty is chosen. Storing as zero for now
+
+# This is how much the circle moves. This value changes once set_difficulty is chosen. Storing as zero for now
+move_size = 0
+
+num_moves = 0   # This counts how many moves the user takes to find the hidden circle
+
+# This is the users previous x and y position. This is currently storing as zero but will change in set_circle_color
+# This will help us determine if the user is getting further away from the hidden circle or closer
 previous_x = 0
 previous_y = 0
 
@@ -92,35 +112,35 @@ def set_circle_color():
 def display_text():
     font = pygame.font.SysFont(None, 24)
 
-    line = font.render("Find the hidden circle", True, YELLOW)
+    line = font.render("Find the hidden circle", True, yellow)
     SCREEN.blit(line, (50, 50))
 
-    line = font.render("Use arrows to move", True, YELLOW)
+    line = font.render("Use arrows to move", True, yellow)
     SCREEN.blit(line, (50, 70))
 
-    line = font.render("Red = Warmer", True, YELLOW)
+    line = font.render("Red = Warmer", True, yellow)
     SCREEN.blit(line, (50, 100))
 
-    line = font.render("Blue = Colder", True, YELLOW)
+    line = font.render("Blue = Colder", True, yellow)
     SCREEN.blit(line, (50, 120))
 
-    line = font.render("White = Center", True, YELLOW)
+    line = font.render("White = Center", True, yellow)
     SCREEN.blit(line, (50, 140))
 
-    line = font.render('#' + str(num_moves) + " Moves", True, YELLOW)
+    line = font.render('#' + str(num_moves) + " Moves", True, yellow)
     SCREEN.blit(line, (50, 170))
 
-    line = font.render("D = Debug", True, YELLOW)
+    line = font.render("D = Debug", True, yellow)
     SCREEN.blit(line, (700, 50))
 
-    line = font.render("R = Restart", True, YELLOW)
+    line = font.render("R = Restart", True, yellow)
     SCREEN.blit(line, (700, 70))
 
-    line = font.render("H = Home", True, YELLOW)
+    line = font.render("H = Home", True, yellow)
     SCREEN.blit(line, (700, 90))
 
     if hidden_color == green:
-        line = font.render('You found the circle in #' + str(num_moves) + " moves!", True, YELLOW)
+        line = font.render('You found the circle in #' + str(num_moves) + " moves!", True, yellow)
         SCREEN.blit(line, (265, 400))
 
 
