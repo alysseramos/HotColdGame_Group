@@ -19,7 +19,7 @@ RED:Warm<br>
 BLUE:Cold<br>
 WHITE:Center of the Screen<br>
 
-<ul><b>To play the game you will use the following keys :</ul></b><br>
+<u><b>To play the game you will use the following keys :</u></b><br>
 Up,Down,Right,Left<br>
 
 <b>D: Debug :</b> This will reveal where the circle is hidden.<br>
