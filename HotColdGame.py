@@ -173,84 +173,123 @@ def set_random_position():
 
 
 def play_game():
+    """
+    This function actually runs the game. This function allows the user to move their circle up, down, left and right.
+    It counts the total number of moves, allows the user to Debug, go back to the home page or restart the game.
+    """
+    # Brings in these variables. All are subject to change
     global posx, posy, hidden_color, hidden_x, hidden_y, num_moves
 
     clock = pygame.time.Clock()
 
+    # This sets the random position of the hidden circle
     set_random_position()
 
     run_me = True
 
     while run_me:
+        # Limits the game to be played at 60FPS
         clock.tick(60)
 
         for event in pygame.event.get():
+            # Allow the user to x out of the program
             if event.type == pygame.QUIT:
                 run_me = False
 
+            # Left arrow key
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
+                    # This if statement makes sure the circle does not travel off the screen
                     if posx > circle_size:
+                        # Move the circle by the level of difficulty the user has chosen (either by 50, 25 or 10)
                         posx = posx - move_size
+                        # If the user has not found the hidden circle, add one to the total number of moves
                         if hidden_color != green:
                             num_moves = num_moves + 1
 
+            # Right arrow key
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
+                    # This if statement makes sure the circle does not travel off the screen
                     if posx < 800 - circle_size:
+                        # Move the circle by the level of difficulty the user has chosen (either by 50, 25 or 10)
                         posx = posx + move_size
+                        # If the user has not found the hidden circle, add one to the total number of moves
                         if hidden_color != green:
                             num_moves = num_moves + 1
 
+            # Up arrow key
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
+                    # This if statement makes sure the circle does not travel off the screen
                     if posy > circle_size:
+                        # Move the circle by the level of difficulty the user has chosen (either by 50, 25 or 10)
                         posy = posy - move_size
+                        # If the user has not found the hidden circle, add one to the total number of moves
                         if hidden_color != green:
                             num_moves = num_moves + 1
 
+            # Down arrow key
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_DOWN:
+                    # This if statement makes sure the circle does not travel off the screen
                     if posy < 800 - circle_size:
+                        # Move the circle by the level of difficulty the user has chosen (either by 50, 25 or 10)
                         posy = posy + move_size
+                        # If the user has not found the hidden circle, add one to the total number of moves
                         if hidden_color != green:
                             num_moves = num_moves + 1
 
+            # Debug (D) key
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_d:
+                    # If user has already found the hidden circle, keep hidden circle color to green
                     if hidden_color == green:
                         hidden_color = green
                     else:
                         hidden_color = gray
 
+            # Restart (R) key
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
+                    # Set a new random position
                     set_random_position()
+                    # Move user circle back to the center
                     posx = 400
                     posy = 400
+                    # Insure the hidden circle color is hidden to the user
                     hidden_color = black
+                    # Reset the number of moves
                     num_moves = 0
 
+            # Home (H) key
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_h:
+                    # Move user circle back to the center
                     posx = 400
                     posy = 400
+                    # Insure the hidden circle color is hidden to the user
                     hidden_color = black
+                    # Reset the number of moves
                     num_moves = 0
+                    # Run display menu, gives the user a chance to change difficulty/see how to play/quit
                     display_menu()
 
-        # fill the screen with black (otherwise, the circle will leave a trail)
+        # Fills the screen with black (otherwise, the circle will leave a trail)
         screen.fill(black)
 
-        # redraw the circle
+        # Draws both circles
         pygame.draw.circle(screen, colorcircle, (posx, posy), circle_size)
-
         pygame.draw.circle(screen, hidden_color, (hidden_x, hidden_y), circle_size)
+
         display_text()
 
+        # This displays the pygame window
         pygame.display.flip()
+
         set_circle_color()
 
+    # Without this, user can not x out of program completely
     pygame.display.quit()
 
 
