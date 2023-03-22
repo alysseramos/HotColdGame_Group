@@ -1,4 +1,5 @@
-import pygame, pygame.mixer, sys
+import pygame
+import pygame.mixer
 import pygame_menu
 import random
 
@@ -185,6 +186,10 @@ def display_menu():
 def main():
 
     pygame.init()
+    pygame.mixer.init()
+    pygame.mixer.music.laod('Fluffing-a-Duck.mp3')
+    pygame.mixer.music.set_volume(0.5)
+    pygame.mixer.music.play(loops=-1)
 
     display_menu()
     set_random_position()
