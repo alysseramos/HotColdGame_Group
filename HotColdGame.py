@@ -320,13 +320,21 @@ def display_menu():
 
 
 def how_to_play_menu(menu):
+    """
+    This function is like a next page to the display menu. It tells the user the object, how to move, and what the
+    colors mean. The user can go back to the original menu by pressing the back button
+    :param menu: This passes in the menu from the display_menu function
+    """
     instructions = "Objective: Find the hidden circle\n" \
                    "Use the arrow keys to move\n" \
                    "Red circle = Closer to hidden circle\n" \
                    "Blue circle = Further from hidden circle\n" \
                    "White circle = Center of the screen\n"
+    # This clears the other menu
     menu.clear()
+    # This displays the instructions
     menu.add.label(instructions)
+    # This is a button back to the orginal display menu
     menu.add.button('Back', display_menu)
 
 
